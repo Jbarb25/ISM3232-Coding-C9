@@ -27,7 +27,7 @@ class Manager extends Employee{  //Create class Manager that extends from class 
         this.teamSize = teamSize; //Add the object team size 
     }
     getDetails(){
-       return(`${super.getDetails()}\n Team Size: ${this.teamSize}`); //override getDetails to include team size
+       return(`Manager Name: ${this.name}\n Employee ID: ${this.id}\n Department: ${this.department}\n Salary: $${this.salary}\n Team Size: ${this.teamSize}\n`); //override getDetails to include team size
     }
     calculateBonus(){
         return (`Bonus $${(this.salary *12) *0.10}`)  //use function calculate bonus to calculate the bonus salary for the manager and return it
@@ -60,3 +60,4 @@ const company = new Company("TechCorp"); //Create a new Company with the name Te
 company.addEmployee(emp1); //Add the emp1 information to the employees array
 company.addEmployee(mgr1); //Add the mgr1 information to the employees array
 company.listEmployees(); //Call the listEmployees function to list the employee information from the employees in the array
+
