@@ -37,4 +37,26 @@ class Manager extends Employee{  //Create class Manager that extends from class 
 const mgr1 = new Manager ("John Smith", 201, "IT", 8000, 5);  //Plug in manager information to the class
 console.log(mgr1.getDetails()) //return the manager details from class
 
-console.log(mgr1.calculateBonus()) //return the manager bonus from the calculateBonus function in the manager class
+console.log(mgr1.calculateBonus()) //return the manager bonus from the calculateBonus function in the manager class 
+
+
+//Task 3: Creating a Company Class
+class Company{  //Create a Company Class that has a name property and an employees property as an array
+    constructor(name){ 
+    this.name = name;
+    this.employees = []; //an array for employees
+    }
+    addEmployee(employee){
+        this.employees.push(employee);  //because it is an array of employees, you use .push to add a new employee
+    }
+    listEmployees(){
+        this.employees.forEach(employee =>{
+            console.log(employee.getDetails());
+        });}
+    //To print a list of employee information, this function will call the function getDetails and give the information for each employee in the array
+}
+
+const company = new Company("TechCorp"); //Create a new Company with the name TechCorp
+company.addEmployee(emp1); //Add the emp1 information to the employees array
+company.addEmployee(mgr1); //Add the mgr1 information to the employees array
+company.listEmployees(); //Call the listEmployees function to list the employee information from the employees in the array
