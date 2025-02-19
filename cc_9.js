@@ -4,16 +4,19 @@ class Employee {    //This is assigning a class to store Employee information to
         this.name = name;
         this.id = id;
         this.department = department;
-        this.salary = salary;
-    }
+        this.salary = salary;}
+
     getDetails(){  //Get Details function let us use the information provided when it is called to store it to the class "Employee" and display it properly
-        return (`Employee Name: ${this.name}\n Employee ID: ${this.id}\n Department: ${this.department}\n Salary: $${this.salary}`);
-    
-    }
+        return (`Employee Name: ${this.name}\n Employee ID: ${this.id}\n Department: ${this.department}\n Salary: $${this.salary}`);}
+
     calculateAnnualSalary(){   //Use this function to calculate the annual salary using the information stored in the class and return the total to where it's called
-        return (`Annual Salary: $${this.salary*12}`);
-    }
+        let annualSalary = this.salary*12;
+        //Task 4: Implementing a Payroll System
+        if (typeof this.calculateBonus === "function"){ //if the calculateBonus is a function that can be applied to an employee then do the following
+            annualSalary += this.calculateBonus();} //Add the bonus from the calculateBonus function to the annual salary
+        return annualSalary;} //return the annualSalary
 }
+
 const emp1 = new Employee("Alice Johnson", 101, "Sales", 5000);  //Store the new employee info into the Employee class with its labels 
 console.log(emp1.getDetails());  //Instantiate the employee object and log the details to the console
 
@@ -24,14 +27,13 @@ console.log(emp1.calculateAnnualSalary()); //Instantiate the annual salary and l
 class Manager extends Employee{  //Create class Manager that extends from class Employee
     constructor(name, id, department, salary, teamSize){
         super(name, id, department, salary);  //Inherit the objects from class Employee
-        this.teamSize = teamSize; //Add the object team size 
-    }
+        this.teamSize = teamSize;} //Add the object team size 
     getDetails(){
-       return(`Manager Name: ${this.name}\n Employee ID: ${this.id}\n Department: ${this.department}\n Salary: $${this.salary}\n Team Size: ${this.teamSize}\n`); //override getDetails to include team size
-    }
+       return(`Manager Name: ${this.name}\n Employee ID: ${this.id}\n Department: ${this.department}\n Salary: $${this.salary}\n Team Size: ${this.teamSize}\n`);} //override getDetails to include team size
     calculateBonus(){
-        return (`Bonus $${(this.salary *12) *0.10}`)  //use function calculate bonus to calculate the bonus salary for the manager and return it
-    }
+        const bonus = 0.1
+        const baseSalary = this.salary*12;
+        return bonus*baseSalary;}  //use function calculate bonus to calculate the bonus salary for the manager and return it
 }
 
 const mgr1 = new Manager ("John Smith", 201, "IT", 8000, 5);  //Plug in manager information to the class
@@ -54,10 +56,20 @@ class Company{  //Create a Company Class that has a name property and an employe
             console.log(employee.getDetails());
         });}
     //To print a list of employee information, this function will call the function getDetails and give the information for each employee in the array
+    //Task 4: Implement Payroll System
+    calculateTotalPayroll(){  
+       let total = 0;
+       this.employees.forEach(employee =>{
+        total += employee.calculateAnnualSalary();
+       });
+       return total;
+    }
 }
-
 const company = new Company("TechCorp"); //Create a new Company with the name TechCorp
 company.addEmployee(emp1); //Add the emp1 information to the employees array
 company.addEmployee(mgr1); //Add the mgr1 information to the employees array
 company.listEmployees(); //Call the listEmployees function to list the employee information from the employees in the array
 
+
+//Task 4: Implementing a Payroll System
+console.log(company.calculateTotalPayroll()); //Call the calculateTotalPayroll function to return the sum of all employee annual salary
