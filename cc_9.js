@@ -64,12 +64,24 @@ class Company{  //Create a Company Class that has a name property and an employe
        });
        return total;
     }
+    //Task 5: Implementing Promotions
+    promoteToManager(employee, teamSize){  //add method to indicate a promotion function and the employee and team size parameters
+        if (teamSize > 0){  //if the employee gets a team do the following
+            const promotedManager = new Manager (employee.name, employee.id, employee.department, employee.salary, teamSize); //establish a promotion attaching the employee info to the new manager role
+            const employeeInfo = this.employees.indexOf(employee);  //pulls the info of the employee from the employee array
+            if (employeeInfo > -1){  //if the employee info is listed in the employee array, do the following
+                this.employees[employeeInfo]=promotedManager;}  //the employee info attached to the employee will be moved to the promoted role
+            console.log(`New Manager: ${employee.name}!`)}}  //log the new promotion for the employee
+
 }
 const company = new Company("TechCorp"); //Create a new Company with the name TechCorp
 company.addEmployee(emp1); //Add the emp1 information to the employees array
 company.addEmployee(mgr1); //Add the mgr1 information to the employees array
 company.listEmployees(); //Call the listEmployees function to list the employee information from the employees in the array
 
-
 //Task 4: Implementing a Payroll System
 console.log(company.calculateTotalPayroll()); //Call the calculateTotalPayroll function to return the sum of all employee annual salary
+
+//Task 5: Implementing Promotions
+company.promoteToManager(emp1, 3); //call the promotion method to plug in the employee information and the new team size and return the promotion role
+company.listEmployees(); //call the employee array to list the employees and their info and the new titles including the new promotion
