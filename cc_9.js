@@ -10,11 +10,7 @@ class Employee {    //This is assigning a class to store Employee information to
         return (`Employee Name: ${this.name}\n Employee ID: ${this.id}\n Department: ${this.department}\n Salary: $${this.salary}`);}
 
     calculateAnnualSalary(){   //Use this function to calculate the annual salary using the information stored in the class and return the total to where it's called
-        let annualSalary = this.salary*12;
-        //Task 4: Implementing a Payroll System
-        if (typeof this.calculateBonus === "function"){ //if the calculateBonus is a function that can be applied to an employee then do the following
-            annualSalary += this.calculateBonus();} //Add the bonus from the calculateBonus function to the annual salary
-        return annualSalary;} //return the annualSalary
+        return this.salary*12;} //return the annualSalary usuing the value that is plugged in when called for 
 }
 
 const emp1 = new Employee("Alice Johnson", 101, "Sales", 5000);  //Store the new employee info into the Employee class with its labels 
@@ -34,6 +30,8 @@ class Manager extends Employee{  //Create class Manager that extends from class 
         const bonus = 0.1
         const baseSalary = this.salary*12;
         return bonus*baseSalary;}  //use function calculate bonus to calculate the bonus salary for the manager and return it
+    calculateAnnualSalary(){
+        return(this.salary*12) + this.calculateBonus();}
 }
 
 const mgr1 = new Manager ("John Smith", 201, "IT", 8000, 5);  //Plug in manager information to the class
@@ -56,6 +54,7 @@ class Company{  //Create a Company Class that has a name property and an employe
             console.log(employee.getDetails());
         });}
     //To print a list of employee information, this function will call the function getDetails and give the information for each employee in the array
+
     //Task 4: Implement Payroll System
     calculateTotalPayroll(){  
        let total = 0;
